@@ -1,0 +1,130 @@
+vim.g.mapleader = " "
+
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+
+if vim.g.vscode then
+    local comment = {
+        selected = function()
+            vim.fn.VSCodeNotifyRange("editor.action.commentLine", vim.fn.line("v"), vim.fn.line("."), 1)
+        end
+    }
+
+    local file = {
+        new = function()
+            vim.fn.VSCodeNotify("workbench.explorer.fileView.focus")
+            vim.fn.VSCodeNotify("explorer.newFile")
+        end,
+
+        save = function()
+            vim.fn.VSCodeNotify("workbench.action.files.save")
+        end,
+
+        saveAll = function()
+            vim.fn.VSCodeNotify("workbench.action.files.saveAll")
+        end,
+
+        close = function()
+            vim.fn.VSCodeNotify("workbench.action.closeActiveEditor")
+        end,
+
+        format = function()
+            vim.fn.VSCodeNotify("editor.action.formatDocument")
+        end,
+
+        showInExplorer = function()
+            vim.fn.VSCodeNotify("workbench.files.action.showActiveFileInExplorer")
+        end,
+
+        rename = function()
+            vim.fn.VSCodeNotify("workbench.files.action.showActiveFileInExplorer")
+            vim.fn.VSCodeNotify("renameFile")
+        end
+    }
+
+    local action = {
+        quickOpen = function()
+            vim.fn.VSCodeNotify("workbench.action.quickOpen")
+        end,
+
+        showCommands = function()
+            vim.fn.VSCodeNotify("workbench.action.showCommands")
+        end,
+
+        toggleSidebarVisibility = function()
+            vim.fn.VSCodeNotify("workbench.action.toggleSidebarVisibility")
+        end,
+
+        toggleCenteredLayout = function()
+            vim.fn.VSCodeNotify("workbench.action.toggleCenteredLayout")
+        end,
+
+        focusLeftGroup = function()
+            vim.fn.VSCodeNotify("workbench.action.focusLeftGroup")
+        end,
+
+        focusRightGroup = function()
+            vim.fn.VSCodeNotify("workbench.action.focusRightGroup")
+        end,
+
+        focusAboveGoup = function()
+            vim.fn.VSCodeNotify("workbench.action.focusAboveGroup")
+        end,
+
+        focusBelowGroup = function()
+            vim.fn.VSCodeNotify("workbench.action.focusBelowGroup")
+        end
+    }
+
+    local view = {
+        explorer = function()
+            vim.fn.VSCodeNotify("workbench.view.explorer")
+        end
+    }
+
+    local markdown = {
+        preview = function()
+            vim.fn.VSCodeNotify("markdown.showPreview")
+        end,
+
+        showPreviewToSide = function()
+            vim.fn.VSCodeNotify("markdown.showPreviewToSide")
+        end
+    }
+
+    vim.keymap.set({ 'n', 'v' }, "<leader>/", comment.selected)
+
+    vim.keymap.set({ 'n', 'v' }, "<leader>w", file.save)
+    vim.keymap.set({ 'n', 'v' }, "<leader>q", file.close)
+
+    vim.keymap.set({ 'n', 'v' }, "<leader>ff", action.quickOpen)
+    vim.keymap.set({ 'n', 'v' }, "<leader>fc", action.showCommands)
+    vim.keymap.set({ 'n', 'v' }, "<leader>e", action.toggleSidebarVisibility)
+    vim.keymap.set({ 'n', 'v' }, "<leader>nn", action.toggleCenteredLayout)
+    vim.keymap.set({ 'n', 'v' }, "<C-h>", action.focusLeftGroup)
+    vim.keymap.set({ 'n', 'v' }, "<C-j>", action.focusBelowGroup)
+    vim.keymap.set({ 'n', 'v' }, "<C-k>", action.focusAboveGoup)
+    vim.keymap.set({ 'n', 'v' }, "<C-l>", action.focusRightGroup)
+
+    vim.keymap.set({ 'n', 'v' }, "<leader>o", view.explorer)
+
+    vim.keymap.set({ 'n', 'v' }, "<leader>mm", markdown.preview)
+    vim.keymap.set({ 'n', 'v' }, "<leader>mv", markdown.showPreviewToSide)
+
+    vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<;-r><C-w>]])
+else
+    -- ordinary Neovim
+    vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+    vim.keymap.set("n", "<leader>w", vim.cmd.w)
+    vim.keymap.set("n", "<leader>q", vim.cmd.bd)
+    vim.keymap.set("n", "<C-d>", "<C-d>zz")
+    vim.keymap.set("n", "<C-u>", "<C-u>zz")
+    vim.keymap.set("n", "n", "nzzzv")
+    vim.keymap.set("n", "N", "Nzzzv")
+    vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+    vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+    vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+end
