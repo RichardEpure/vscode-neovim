@@ -14,7 +14,7 @@ return require('packer').startup(function(use)
           require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
         end
     }
-    
+
     use({
       'kylechui/nvim-surround',
       tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -24,4 +24,6 @@ return require('packer').startup(function(use)
           })
       end
   })
+
+  use "ggandor/leap.nvim"
 end)
