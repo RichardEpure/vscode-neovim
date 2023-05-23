@@ -1,10 +1,11 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("v", "<leader>s", [[:sort<CR>]])
+vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 
 if vim.g.vscode then
     local comment = {
