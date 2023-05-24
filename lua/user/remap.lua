@@ -81,7 +81,15 @@ if vim.g.vscode then
 
         gotoTab = function(index)
             vim.fn.VSCodeNotify("workbench.action.openEditorAtIndex" .. index)
-        end
+        end,
+
+        navigateForwardInEditLocations = function()
+            vim.fn.VSCodeNotify("workbench.action.navigateForwardInEditLocations")
+        end,
+
+        navigatePreviousInEditLocations = function()
+            vim.fn.VSCodeNotify("workbench.action.navigatePreviousInEditLocations")
+        end,
     }
 
     local view = {
@@ -119,8 +127,8 @@ if vim.g.vscode then
     vim.keymap.set({ 'n', 'v' }, "<leader>mm", markdown.preview)
     vim.keymap.set({ 'n', 'v' }, "<leader>mv", markdown.showPreviewToSide)
 
-    vim.keymap.set({ 'n', 'v' }, "<leader>o", "<C-o>")
-    vim.keymap.set({ 'n', 'v' }, "<leader>i", "<C-i>")
+    vim.keymap.set({ 'n', 'v' }, "<leader>o", action.navigatePreviousInEditLocations)
+    vim.keymap.set({ 'n', 'v' }, "<leader>i", action.navigateForwardInEditLocations)
     vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<;-r><C-w>]])
 
     for i = 1, 9 do
