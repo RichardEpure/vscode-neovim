@@ -77,6 +77,10 @@ if vim.g.vscode then
 
         focusBelowGroup = function()
             vim.fn.VSCodeNotify("workbench.action.focusBelowGroup")
+        end,
+
+        gotoTab = function(index)
+            vim.fn.VSCodeNotify("workbench.action.openEditorAtIndex" .. index)
         end
     }
 
@@ -103,19 +107,27 @@ if vim.g.vscode then
 
     vim.keymap.set({ 'n', 'v' }, "<leader>ff", action.quickOpen)
     vim.keymap.set({ 'n', 'v' }, "<leader>fc", action.showCommands)
-    vim.keymap.set({ 'n', 'v' }, "<leader>e", action.toggleSidebarVisibility)
+    vim.keymap.set({ 'n', 'v' }, "<leader>eq", action.toggleSidebarVisibility)
     vim.keymap.set({ 'n', 'v' }, "<leader>nn", action.toggleCenteredLayout)
     vim.keymap.set({ 'n', 'v' }, "<C-h>", action.focusLeftGroup)
     vim.keymap.set({ 'n', 'v' }, "<C-j>", action.focusBelowGroup)
     vim.keymap.set({ 'n', 'v' }, "<C-k>", action.focusAboveGoup)
     vim.keymap.set({ 'n', 'v' }, "<C-l>", action.focusRightGroup)
 
-    vim.keymap.set({ 'n', 'v' }, "<leader>o", view.explorer)
+    vim.keymap.set({ 'n', 'v' }, "<leader>ee", view.explorer)
 
     vim.keymap.set({ 'n', 'v' }, "<leader>mm", markdown.preview)
     vim.keymap.set({ 'n', 'v' }, "<leader>mv", markdown.showPreviewToSide)
 
+    vim.keymap.set({ 'n', 'v' }, "<leader>o", "<C-o>")
+    vim.keymap.set({ 'n', 'v' }, "<leader>i", "<C-i>")
     vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<;-r><C-w>]])
+
+    for i = 1, 9 do
+        vim.keymap.set({ 'n', 'v' }, i .. "gt", function()
+            action.gotoTab(i)
+        end)
+    end
 else
     -- ordinary Neovim
     vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
