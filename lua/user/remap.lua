@@ -79,6 +79,14 @@ if vim.g.vscode then
             vim.fn.VSCodeNotify("workbench.action.focusBelowGroup")
         end,
 
+        moveEditorLeftInGroup = function()
+            vim.fn.VSCodeNotify("workbench.action.moveEditorLeftInGroup")
+        end,
+
+        moveEditorRightInGroup = function()
+            vim.fn.VSCodeNotify("workbench.action.moveEditorRightInGroup")
+        end,
+
         gotoTab = function(index)
             vim.fn.VSCodeNotify("workbench.action.openEditorAtIndex" .. index)
         end,
@@ -123,6 +131,9 @@ if vim.g.vscode then
     vim.keymap.set({ 'n', 'v' }, "<C-l>", action.focusRightGroup)
 
     vim.keymap.set({ 'n', 'v' }, "<leader>ee", view.explorer)
+
+    vim.keymap.set({ 'n', 'v' }, "<leader>t", action.moveEditorRightInGroup)
+    vim.keymap.set({ 'n', 'v' }, "<leader>T", action.moveEditorLeftInGroup)
 
     vim.keymap.set({ 'n', 'v' }, "<leader>mm", markdown.preview)
     vim.keymap.set({ 'n', 'v' }, "<leader>mv", markdown.showPreviewToSide)
