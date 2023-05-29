@@ -5,7 +5,8 @@ vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    use { 'phaazon/hop.nvim', branch = 'v2' }
+    use "tpope/vim-repeat"
     use { 'kylechui/nvim-surround', tag = "*" }
     use "ggandor/leap.nvim"
+    use "ggandor/flit.nvim"
 end)
