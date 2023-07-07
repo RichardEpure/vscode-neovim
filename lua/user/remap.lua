@@ -143,7 +143,7 @@ if vim.g.vscode then
     vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<;-r><C-w>]])
 
     for i = 1, 9 do
-        vim.keymap.set({ 'n', 'v' }, i .. "gt", function()
+        vim.keymap.set({ 'n', 'v' }, "<leader>" .. i , function()
             action.gotoTab(i)
         end)
     end
