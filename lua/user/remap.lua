@@ -121,6 +121,7 @@ if vim.g.vscode then
 
     vim.keymap.set({ 'n', 'v' }, "<leader>w", file.save)
     vim.keymap.set({ 'n', 'v' }, "<leader>q", file.close)
+    vim.keymap.set({ 'n', 'v' }, "<leader>ea", file.showInExplorer)
 
     vim.keymap.set({ 'n', 'v' }, "<leader>ff", action.quickOpen)
     vim.keymap.set({ 'n', 'v' }, "<leader>fc", action.showCommands)
