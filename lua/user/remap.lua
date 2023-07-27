@@ -7,6 +7,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set({ "n", "v" }, "&", "g_")
+vim.keymap.set({ "n", "v" }, "£", "0")
 
 if vim.g.vscode then
     local comment = {
