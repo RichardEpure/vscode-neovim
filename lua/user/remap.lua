@@ -81,6 +81,22 @@ if vim.g.vscode then
             vim.fn.VSCodeNotify("workbench.action.focusBelowGroup")
         end,
 
+        navigateLeft = function()
+            vim.fn.VSCodeNotify("workbench.action.navigateLeft")
+        end,
+
+        navigateRight = function()
+            vim.fn.VSCodeNotify("workbench.action.navigateRight")
+        end,
+
+        navigateAbove = function()
+            vim.fn.VSCodeNotify("workbench.action.navigateUp")
+        end,
+
+        navigateBelow = function()
+            vim.fn.VSCodeNotify("workbench.action.navigateDown")
+        end,
+
         moveEditorLeftInGroup = function()
             vim.fn.VSCodeNotify("workbench.action.moveEditorLeftInGroup")
         end,
@@ -128,10 +144,10 @@ if vim.g.vscode then
     vim.keymap.set({ 'n', 'v' }, "<leader>fc", action.showCommands)
     vim.keymap.set({ 'n', 'v' }, "<leader>eq", action.toggleSidebarVisibility)
     vim.keymap.set({ 'n', 'v' }, "<leader>nn", action.toggleCenteredLayout)
-    vim.keymap.set({ 'n', 'v' }, "<C-h>", action.focusLeftGroup)
-    vim.keymap.set({ 'n', 'v' }, "<C-j>", action.focusBelowGroup)
-    vim.keymap.set({ 'n', 'v' }, "<C-k>", action.focusAboveGoup)
-    vim.keymap.set({ 'n', 'v' }, "<C-l>", action.focusRightGroup)
+    vim.keymap.set({ 'n', 'v' }, "<C-h>", action.navigateLeft)
+    vim.keymap.set({ 'n', 'v' }, "<C-j>", action.navigateBelow)
+    vim.keymap.set({ 'n', 'v' }, "<C-k>", action.navigateAbove)
+    vim.keymap.set({ 'n', 'v' }, "<C-l>", action.navigateRight)
 
     vim.keymap.set({ 'n', 'v' }, "<leader>ee", view.explorer)
 
