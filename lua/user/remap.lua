@@ -11,7 +11,7 @@ vim.keymap.set({ "n", "v" }, "&", "g_")
 if vim.g.vscode then
     local comment = {
         selected = function()
-            vim.fn.VSCodeNotifyRange("editor.action.commentLine", vim.fn.line("v"), vim.fn.line("."), 1)
+            vim.fn.VSCodeNotify("editor.action.commentLine")
         end
     }
 
